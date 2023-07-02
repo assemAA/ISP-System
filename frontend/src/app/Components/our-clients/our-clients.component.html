@@ -1,0 +1,383 @@
+<div id="clientheader">
+    
+    <div class="d-flex align-items-center justify-content-center my-5">
+        <div class="text-center container" >
+        <form class="text-start repeater row basic-form card-body row" [formGroup]="clientform" (ngSubmit)="Add($event)">
+          
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Client Name</label>
+                <input type="text" class="form-control" placeholder="Enter Group Name" formControlName="Name">
+                <ng-container *ngIf="submitted && clientform.controls.Name.errors">
+                    <div *ngIf="clientform.controls.Name.errors['required']" class="form-text text-danger">Name is
+                        required </div>
+                </ng-container>
+            </div>
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">SSN</label>
+                <input type="text" class="form-control" placeholder="Enter Client SSN" formControlName="ssn">
+                <ng-container *ngIf="submitted && clientform.controls.ssn.errors">
+                    <div *ngIf="clientform.controls.ssn.errors['required']" class="form-text text-danger">ssn is
+                        required </div>
+                        <div *ngIf="clientform.controls.ssn.errors['pattern']" class="form-text text-danger">
+                            ssn is
+                            Numbers Only </div>
+                </ng-container>
+            </div>
+           
+            <!-- ----------------------------------- -->
+            
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter Client Phone Number"
+                    formControlName="PhoneNumber">
+                <ng-container *ngIf="submitted && clientform.controls.PhoneNumber.errors">
+                    <div *ngIf="clientform.controls.PhoneNumber.errors['required']" class="form-text text-danger">
+                        PhoneNumber is
+                        required </div>
+                    <div *ngIf="clientform.controls.PhoneNumber.errors['pattern']" class="form-text text-danger">
+                        PhoneNumber is
+                        Numbers Only </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Password</label>
+                <input type="text" class="form-control" placeholder="Enter Password" formControlName="Password">
+                <ng-container *ngIf="submitted && clientform.controls.Password.errors">
+                    <div *ngIf="clientform.controls.Password.errors['required']" class="form-text text-danger">
+                        Password is required </div>
+                </ng-container>
+            </div>
+      
+          
+            <!-- ----------------------------------- -->
+        
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">User Name</label>
+                    <input type="text" class="form-control" placeholder="Enter UserName" formControlName="UserName">
+                    <ng-container *ngIf="submitted && clientform.controls.UserName.errors">
+                        <div *ngIf="clientform.controls.UserName.errors['required']" class="form-text text-danger">
+                            PhoneNumber is
+                            required </div>
+                
+                    </ng-container>
+                </div>
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Contract Fee</label>
+                    <input type="text" class="form-control" placeholder="Enter ContractFee" formControlName="ContractFee">
+                    <ng-container *ngIf="submitted && clientform.controls.ContractFee.errors">
+                        <div *ngIf="clientform.controls.ContractFee.errors['pattern']" class="form-text text-danger">
+                            ContractFee is Numbers Only </div>
+                    <div *ngIf="clientform.controls.ContractFee.errors['required']" class="form-text text-danger">
+                        ContractFee is
+                                required </div>
+    
+                    </ng-container>
+                </div>
+            
+            <!-- ----------------------------------- -->
+          
+
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Prepaid</label>
+                    <input type="text" class="form-control" placeholder="Enter Prepaid" formControlName="Prepaid">
+                    <ng-container *ngIf="submitted && clientform.controls.Prepaid.errors">
+                        <div *ngIf="clientform.controls.Prepaid.errors['pattern']" class="form-text text-danger">
+                            Prepaid is Numbers Only </div>
+                            <div *ngIf="clientform.controls.Prepaid.errors['required']" class="form-text text-danger">
+                                Prepaid is required </div>
+                    </ng-container>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Installation Fee</label>
+                    <input type="text" class="form-control" placeholder="Enter Installation Fee"
+                        formControlName="InstallationFee">
+                        <ng-container *ngIf="submitted && clientform.controls.InstallationFee.errors">
+                            <div *ngIf="clientform.controls.InstallationFee.errors['pattern']" class="form-text text-danger">
+                                InstallationFee is Numbers Only </div>
+                                <div *ngIf="clientform.controls.InstallationFee.errors['required']" class="form-text text-danger">
+                                    InstallationFee is required </div>
+                        </ng-container>
+                </div>
+
+       
+          
+            <!-- ----------------------------------- -->
+            
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Provider Name</label>
+                <select class="form-control" formControlName="ProviderId">
+                    <option *ngFor="let Provider of InternetProvider" [value]="Provider.id">{{Provider.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Bundle</label>
+                <select class="form-control" formControlName="BundleId">
+                    <option *ngFor="let Bun of Bundle" [value]="Bun.id">{{Bun.name}}</option>
+                </select>
+            </div>
+           
+            <!-- ----------------------------------- -->
+           
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Central Name</label>
+                <select class="form-control" formControlName="CentralId">
+                    <option *ngFor="let central of Central" [value]="central.id">{{central.name}}</option>
+                </select>
+
+            </div>
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Ip Package</label>
+                <input type="text" class="form-control" placeholder="Enter Ip Package" formControlName="IpPackage">
+                <ng-container *ngIf="submitted && clientform.controls.IpPackage.errors">
+                    <div *ngIf="clientform.controls.IpPackage.errors['pattern']" class="form-text text-danger">
+                        IpPackage is Numbers Only </div>
+                </ng-container>
+            </div>
+           
+
+            <!-- ----------------------------------- -->
+            
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">MobileNumber One</label>
+                <input type="text" class="form-control" placeholder="Enter Mobile Number One"
+                    formControlName="MobileNumberOne">
+                    <ng-container *ngIf="submitted && clientform.controls.MobileNumberOne.errors">
+                        <div *ngIf="clientform.controls.MobileNumberOne.errors['pattern']" class="form-text text-danger">
+                            MobileNumberOne is Numbers Only </div>
+                    </ng-container>
+            </div>
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">MobileNumber Two</label>
+                <input type="text" class="form-control" placeholder="Enter Mobile Number Two"
+                    formControlName="MobileNumberTwo">
+                    <ng-container *ngIf="submitted && clientform.controls.MobileNumberTwo.errors">
+                        <div *ngIf="clientform.controls.MobileNumberTwo.errors['pattern']" class="form-text text-danger">
+                            MobileNumberTwo is Numbers Only </div>
+                    </ng-container>
+            </div>
+           
+            <!-- ----------------------------------- -->
+          
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">LineOwner Name</label>
+                <input type="text" class="form-control" placeholder="Enter LineOwner" formControlName="LineOwner">
+            </div>
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Note</label>
+                <input type="text" class="form-control" placeholder="Enter Note" formControlName="Note">
+            </div>
+          
+            <!-- ----------------------------------- -->
+
+            
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Router Serial</label>
+                <input type="text" class="form-control" placeholder="Enter Router Serial"
+                    formControlName="RouterSerial"> 
+
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">OrderNumber</label>
+                <input type="text" class="form-control" placeholder="Enter OrderNumber" formControlName="OrderNumber">
+                <ng-container *ngIf="submitted && clientform.controls.OrderNumber.errors">
+                    <div *ngIf="clientform.controls.OrderNumber.errors['pattern']" class="form-text text-danger">
+                        OrderNumber is Numbers Only </div>
+                </ng-container>
+            </div>
+            
+            <!-- ----------------------------------- -->
+           
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Port Slot</label>
+                <input type="text" class="form-control" placeholder="Enter PortSlot" formControlName="PortSlot">
+                <ng-container *ngIf="submitted && clientform.controls.PortSlot.errors">
+                    <div *ngIf="clientform.controls.PortSlot.errors['pattern']" class="form-text text-danger">
+                        PortSlot is Numbers Only </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Port Block</label>
+                <input type="text" class="form-control" placeholder="Enter Port Blot" formControlName="PortBlock">
+                <ng-container *ngIf="submitted && clientform.controls.PortBlock.errors">
+                    <div *ngIf="clientform.controls.PortBlock.errors['pattern']" class="form-text text-danger">
+                        PortBlock is Numbers Only </div>
+                </ng-container>
+            </div>
+          
+            <!-- ----------------------------------- -->
+        
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Governorate Code</label>
+                    <select class="form-control" formControlName="GovernorateId">
+                        <option *ngFor="let Gov of governorates" [value]="Gov.id">{{Gov.name}}</option>
+                    </select>
+                </div>
+    
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">VPI</label>
+                <input type="text" class="form-control" placeholder="Enter VPI" formControlName="VPI">
+                <ng-container *ngIf="submitted && clientform.controls.VPI.errors">
+                    <div *ngIf="clientform.controls.VPI.errors['pattern']" class="form-text text-danger">
+                        VPI is Numbers Only </div>
+                </ng-container>
+            </div>
+           
+            <!-- ----------------------------------- -->
+          
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">VCI</label>
+                <input type="text" class="form-control" placeholder="Enter VCI" formControlName="VCI">
+                <ng-container *ngIf="submitted && clientform.controls.VCI.errors">
+                    <div *ngIf="clientform.controls.VCI.errors['pattern']" class="form-text text-danger">
+                        VCI is Numbers Only </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">OrderWorkNumber</label>
+                <input type="text" class="form-control" placeholder="Enter OrderWorkNumber"
+                    formControlName="OrderWorkNumber">
+                    <ng-container *ngIf="submitted && clientform.controls.OrderWorkNumber.errors">
+                        <div *ngIf="clientform.controls.OrderWorkNumber.errors['pattern']" class="form-text text-danger">
+                            OrderWorkNumber is Numbers Only </div>
+                    </ng-container>
+            </div>
+           
+            <!-- ----------------------------------- -->
+           
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Email" formControlName="Email">
+                    <ng-container *ngIf="submitted && clientform.controls.Email.errors">
+                        <div *ngIf="clientform.controls.Email.errors['email']" class="form-text text-danger">
+                            Email is invalid </div>
+                    </ng-container>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Branch Name</label>
+                    <select class="form-control" formControlName="BranchId">
+                        <option *ngFor="let branch of Branch" [value]="branch.id">{{branch.name}}</option>
+                    </select>
+    
+                </div>   
+          
+            <!-- ----------------------------------- -->
+          
+
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label" id="labelonly">Address</label>
+                    <input type="text" class="form-control" placeholder="Enter Address" formControlName="Address">
+    
+                </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label"id="labelonly">Slot Num</label>
+                <input type="text" class="form-control" placeholder="Enter SlotNum" formControlName="SlotNum">
+                <ng-container *ngIf="submitted && clientform.controls.SlotNum.errors">
+                    <div *ngIf="clientform.controls.SlotNum.errors['pattern']" class="form-text text-danger">
+                        SlotNum is Numbers Only </div>
+                </ng-container>
+            </div>
+        
+            <!-- ----------------------------------- -->
+            
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Offers Name</label>
+                <select multiple class="form-control"  formControlName="offersId">
+                  <option *ngFor="let offer of offers " [value]="offer.id">{{offer.name}}</option>
+                </select>
+              </div>
+
+            <div class="form-group col-md-6 my-3">
+                <label class="form-label" id="labelonly">Block Num</label>
+                <input type="text" class="form-control" placeholder="Enter BlockNum" formControlName="BlockNum">
+                <ng-container *ngIf="submitted && clientform.controls.BlockNum.errors">
+                    <div *ngIf="clientform.controls.BlockNum.errors['pattern']" class="form-text text-danger">
+                        BlockNum is Numbers Only </div>
+                </ng-container>
+            </div>
+           
+            <br>
+    
+
+
+<div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary col-md-2">{{clientId?"Edit ":"Add "}}</button>
+        </div>
+        </form>
+    </div>
+    </div>
+    <br><br>
+    
+
+
+
+<div class="  container mx-auto">
+    <div class="my-6">
+
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">Governorate</th>
+               
+                <th scope="col">ServiceProvider</th>
+                <th scope="col">Bundle</th>
+                <th scope="col">CentralName</th>
+          
+                <th scope="col">UserName </th>
+                <th scope="col">Password</th>
+                <th scope="col">MobileNumberOne</th>
+
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let client of clients">
+
+                <td>{{client.name}}</td>
+                <td>{{client.phone}}</td>
+             
+                <td>{{client.governarateName}}</td>
+                <td>{{client.providerName}}</td>
+                <td>{{client.bundle}}</td>
+                <td>{{client.central}}</td>
+          
+                <td>{{client.mobile1}}</td>
+                <td>{{client.userName}}</td>
+                <td>{{client.lineOwner}}</td>
+
+
+
+                <td>
+                    <button class="btn btn-warning mx-1" routerLink="/client/{{client.id}}"
+                        routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+                            class="material-symbols-outlined">
+                            Edit
+                        </span></button>
+
+                    <button class="btn btn-danger" (click)="openDialog(client.id)">Delete </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

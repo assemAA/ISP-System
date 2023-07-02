@@ -1,0 +1,56 @@
+
+
+
+<div class="w-75 mx-auto my-5 text-center bill-body p-4">
+
+      
+    <select [(ngModel)]="governorateCode" class="form-select my-4" aria-label="Default select example">
+        <option  selected value="0"> --select the Governorate -- </option>
+        <option  value={{governorate.code}} *ngFor="let governorate of governorates" >{{governorate.name}}</option> 
+    </select> 
+
+    <div class="input-group mb-3 my-4">
+        <input [(ngModel)]="clientPhone" type="text" class="form-control" placeholder="Entre Client phone" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <span class="phone-invalid fs-3" *ngIf="PhoneNotValed">client phone not valid</span>
+    <button mat-raised-button color="primary" (click)="calculateBill()"  class="my-4"
+    *ngIf="clientPhone">Show Bill</button>
+
+    <div class="w-75 mx-auto my-3 text-ecnter rounded p-3 bill-body">
+        <h2 class="font-bill text-center">Bill</h2>
+
+        <div class="container p-2 w-75 mx-auto" *ngIf="billFound">
+            
+            <h3> Client Info </h3>
+            <div class="row justify-content-center">
+                <p class="font-bill col-lg-8 col-md-8 col-sm-12">Survey Number : {{clientBill.phoneNumber}}</p>
+                <p class="font-bill col-lg-8 col-md-8 col-sm-12">Client : {{clientBill.clientName}}</p>
+                <p class="font-bill col-lg-6 col-md-8 col-sm-12">governate : {{clientBill.governate}}</p>
+                <p class="font-bill col-lg-6 col-md-8 col-sm-12">branch : {{clientBill.branch}}</p>
+                <p class="font-bill col-lg-6 col-md-8 col-sm-12">central : {{clientBill.central}}</p>
+                <p class="font-bill col-lg-6 col-md-8 col-sm-12">provider: {{clientBill.provider}}</p>
+                <p class="font-bill col-lg-6 col-md-8 col-sm-12">bundle : {{clientBill.bundle}}</p>
+
+            </div>
+            
+            <hr>
+
+            <h3> Bill Info</h3>
+
+            <div class="row justify-content-center">
+                <p class="font-bill col-lg-6 col-md-4 col-sm-12">Month : {{clientBill.month}}</p>
+                <p class="font-bill col-lg-6 col-md-4 col-sm-12">Year: {{clientBill.year}}</p>
+                <p class="font-bill col-lg-6 col-md-4 col-sm-12">bundle Cost: {{clientBill.bundleCost}} LE</p>
+                <p class="font-bill col-lg-6 col-md-4 col-sm-12">Extra Cost: {{clientBill.totalCost - clientBill.bundleCost }} LE</p>
+                <p class="font-bill col-lg-6 col-md-4 col-sm-12">total Cost : {{clientBill.totalCost}} LE</p>    
+            </div>
+            
+            <button mat-raised-button color="warn" class="mx-auto" (click)="payBill()">pay</button>
+
+        </div>
+
+        <div class="alert alert-danger fs-1 text-center lead rounder w-75 mx-auto" *ngIf="userNotFound">
+            Client Not Found
+        </div>
+    </div>
+</div>

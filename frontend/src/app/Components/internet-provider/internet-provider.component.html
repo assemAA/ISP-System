@@ -1,0 +1,63 @@
+<div class="d-flex align-items-center justify-content-center my-5">
+  <div class="text-center container">
+      <div class="form-head d-flex mb-3 align-items-start">
+
+         
+
+      <form class="text-start repeater row basic-form card-body row" [formGroup]="providerform"
+        (ngSubmit)="Add($event)">
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label">Provider Name</label>
+          <input type="text" class="form-control" placeholder="Enter Provider Name" formControlName="Name">
+          <ng-container *ngIf="submitted &&providerform.controls.Name.errors">
+            <div *ngIf="getName.hasError('required')" class="form-text text-danger">Provider Name is
+              Required </div>
+
+          </ng-container>
+        </div>
+
+        <div class="row ">
+          <button type="submit" class="btn btn-primary col-md-2">{{providerId?"Edit ":"Add "}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<div class="container   table-responsive">
+ 
+  <table class=" table table-responsive-md justify-content-center">
+    <thead>
+      <tr>
+
+        <th scope="col"><strong>Name</strong> </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let provider of providers">
+
+        <td>{{provider.name}}</td>
+
+
+
+        <td>
+
+
+          <button class="btn btn-warning mx-1" routerLink="/provider/{{provider.id}}"
+            routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+              class="material-symbols-outlined">
+              Edit
+            </span></button>
+
+          <button class="btn btn-danger" (click)="openDialog(provider.id)"><span class="material-symbols-outlined">
+              Delete
+            </span> </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

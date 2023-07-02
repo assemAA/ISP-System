@@ -1,0 +1,16 @@
+.bill-body{
+    border-width: 1px;
+    border-radius: 1%;
+    border-style: solid;
+}
+
+.font-bill{
+    font-family: 'Ysabeau Infant', sans-serif;
+}
+
+.phone-invalid{
+    display: block;
+    margin-left: 0px;
+    margin-bottom: 2px;
+    color: red;
+}

@@ -1,0 +1,45 @@
+.login-tittle{
+	font-style: normal;
+	color: black;
+}
+
+input{
+	height: 60px;
+	font-size: large;
+}
+
+.alert-user {
+	color: red;
+}
+
+
+.background-div{
+    background-image: url('../../../../src/assets/images/bg-01.jpg');
+    background-size: cover;
+}
+
+
+.login100-form-title {
+	display: block;
+	font-family: 'Caprasimo', cursive;
+	font-size: 39px;
+	color: #333333;
+	line-height: 1.2;
+	text-align: center;
+  }
+
+.button-form{
+  background-image: url('../../../assets/images/bg-01.jpg');
+  background-size: cover;
+  width: 50% !important;
+  display: block !important;
+  margin: auto !important;
+  margin-top: 3%;
+}
+
+img {
+	width: 80%;
+	height: 120px;
+	display: block;
+	margin: auto;
+}

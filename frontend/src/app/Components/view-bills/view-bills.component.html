@@ -1,0 +1,116 @@
+
+
+
+<div class="w-75 mx-auto my-5 text-center bill-body p-4">
+
+    
+    <select [(ngModel)]="governorateCode" class="form-select my-4" aria-label="Default select example">
+        <option  selected value="0"> --select the Governorate -- </option>
+        <option  value={{governorate.code}} *ngFor="let governorate of governorates" >{{governorate.name}}</option> 
+    </select> 
+    <div class="input-group mb-3 my-4">
+        <input [(ngModel)]="clientPhone" type="text" class="form-control" placeholder="Entre Client phone" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <span class="phone-invalid fs-3" *ngIf="PhoneNotValed">client phone not valid</span>
+
+
+    <select [(ngModel)]="year" class="form-select my-4" aria-label="Default select example">
+        <option  selected value="0"> --select the year -- </option>
+        <option  value={{year}} *ngFor="let year of years" >{{year}}</option> 
+    </select>
+
+
+    <button mat-raised-button color="primary" class="my-3" *ngIf="clientPhone&&year&&governorateCode"
+        (click)="getBills()">
+    Show Bills
+    </button>
+
+    <div class="alert alert-danger text-center fs-2 lead rounder my-5" *ngIf="userNotFound">
+        user not found 
+    </div>
+    <!--table of User Data-->
+    <h3 class="fs-2 text-lead text-center my-3">Client Info</h3>
+    <hr>
+    <div class="my-5 p-2">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Client</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Governate</th>
+                <th scope="col">Bundle</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Provider</th>
+                <th scope="col">Central</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{userBills.clientName}}</td>
+                <td>{{userBills.phone}}</td>
+                <td>{{userBills.governate}}</td>
+                <td>{{userBills.bundle}}</td>
+                <td>{{userBills.branch}}</td>
+                <td>{{userBills.provider}}</td>
+                <td>{{userBills.central}}</td>
+              </tr> 
+            </tbody>
+          </table>
+    </div>
+        <!--table of User Data-->
+
+
+        <!--table of Offers List-->
+    <h3 class="fs-2 text-lead text-center my-3">Offers Info</h3>
+    <hr>
+    <div class="my-5 p-2">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Offer Months</th>
+                <th scope="col">Free Months</th>
+                <th scope="col">Discount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let offer of userBills.offers">
+                <td>{{offer.name}}</td>
+                <td>{{offer.amountOfOfferMonths}}</td>
+                <td>{{offer.amountOfFreeMonths}}</td>
+                <td>{{offer.amountOfDiscount}}%</td>
+              </tr> 
+            </tbody>
+          </table>
+    </div>
+        <!--table of offers list-->
+
+        <!--tables of Bills list-->
+        <h3 class="fs-2 text-lead text-center my-3">Bills Info</h3>
+        <hr>
+        <div class="my-5 p-2">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Generated date</th>
+                    <th scope="col">Expired Date</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let bill of userBills.bills">
+                    <td>{{bill.date.split('T')[0]}}</td>
+                    <td>{{bill.expireDate.split('T')[0]}}</td>
+                    <td>{{bill.month}}</td>
+                    <td>{{bill.cost}}</td>
+                    <td>{{bill.payed? 'Payed' : 'Not Payed'}}</td>
+
+                  </tr> 
+                </tbody>
+              </table>
+        </div>
+        <!--tables of Bills list-->
+
+</div>

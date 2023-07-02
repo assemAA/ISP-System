@@ -1,0 +1,25 @@
+/* #clientheader
+{
+    display: flex;
+    justify-content: center;
+}
+#inputstyle
+{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    padding: 15px;
+    border-radius: 10px;
+    border-style:outset;
+}
+#labelonly
+{
+    margin-left: 20px;margin-top: 10px;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 15px;
+    
+    color: rgba(15, 12, 19, 0.639);
+  
+} */

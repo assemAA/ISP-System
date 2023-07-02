@@ -1,0 +1,154 @@
+
+
+<div class="d-flex align-items-center justify-content-center my-5">
+  <div class="text-center container">
+    <div class="form-head d-flex mb-3 align-items-start">
+    
+
+
+
+
+      <form class="text-start repeater row basic-form card-body row " [formGroup]="bundleform" (ngSubmit)="Add($event)">
+        <div class="form-group col-md-6 my-3">
+
+
+
+          <label class="form-label">Bundle Name</label>
+          <input type="text" class="form-control" placeholder="Enter Bundle Name" formControlName="Name">
+          <ng-container *ngIf="submitted &&bundleform.controls.Name.errors">
+            <div *ngIf="getName.hasError('required')" class="form-text text-danger">Bundle Name is
+              Required </div>
+
+          </ng-container>
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label">Bundle Type</label>
+          <input type="text" class="form-control" placeholder="Enter Bundle Type" formControlName="BundleTybe">
+          <ng-container *ngIf="submitted &&bundleform.controls.BundleTybe.errors">
+            <div *ngIf="getBundleTybe.hasError('required')" class="form-text text-danger">Bundle Type is
+              Required </div>
+
+          </ng-container>
+        </div>
+
+        <div class="form-group col-md-12 my-3">
+          <label class="form-label">notes</label>
+          <input type="text" class="form-control" placeholder="Enter Bundle Notes" formControlName="Notes">
+
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label"> Provider Name</label>
+          <select class="form-select" formControlName="ProviderName">
+            <option *ngFor="let prov of providers" [value]="prov.id">{{prov.name}}</option>
+          </select>
+          <ng-container *ngIf="submitted &&bundleform.controls.ProviderName.errors">
+            <div *ngIf="getProviderName.hasError('required')" class="form-text text-danger">Provider Name is
+              required</div>
+
+          </ng-container>
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label">Is Active</label>
+          <select class="form-select" formControlName="IsActive">
+            <option [ngValue]="true">True</option>
+            <option [ngValue]="false">False</option>
+          </select>
+          <ng-container *ngIf="submitted &&bundleform.controls.IsActive.errors">
+            <div *ngIf="getIsActive.hasError('required')" class="form-text text-danger">Is Active is
+              required</div>
+
+          </ng-container>
+        </div>
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label">Price</label>
+          <input type="text" class="form-control" placeholder="Enter Bundle Name" formControlName="Price">
+          <ng-container *ngIf="submitted &&bundleform.controls.Price.errors">
+            <div *ngIf="getPrice.hasError('required')" class="form-text text-danger">Bundle Price is
+              Required </div>
+          </ng-container>
+          <ng-container *ngIf="submitted &&bundleform.controls.Price.errors">
+            <div *ngIf="getPrice.hasError('pattern')" class="form-text text-danger">Price is
+              Numbers only</div>
+           
+          </ng-container>
+        </div>
+       
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label">Buying Price</label>
+          <input type="text" class="form-control" placeholder="Enter Bundle Name" formControlName="BuyingPrice">
+          <ng-container *ngIf="submitted &&bundleform.controls.BuyingPrice.errors">
+            <div *ngIf="getBuyingPrice.hasError('required')" class="form-text text-danger">Bundle Buying Price is
+              Required </div>
+          </ng-container>
+          <ng-container *ngIf="submitted &&bundleform.controls.BuyingPrice.errors">
+            <div *ngIf="getBuyingPrice.hasError('pattern')" class="form-text text-danger">Bundle Buying Price is
+              Numbers only</div>
+           
+          </ng-container>
+        </div>
+
+       <div class=" row justify-content-center">
+        <button type="submit" class="btn btn-primary col-md-2">{{bundleId?"Edit ":"Add "}}</button>
+      </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
+<div class="container table-responsive">
+
+  <table class="table table-responsive-md">
+    <thead>
+      <tr>
+
+        <th scope="col"><strong>Name</strong></th>
+        <th scope="col"><strong>Bundle Type</strong></th>
+        <th scope="col"><strong>Note</strong></th>
+        <th scope="col"><strong>Provider Name</strong></th>
+
+        <th scope="col"><strong>Price</strong></th>
+        <th scope="col"><strong>Is Active</strong></th>
+        <th scope="col"><strong>Buying Price</strong></th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bundle of bundles">
+
+        <td>{{bundle.name}}</td>
+        <td>{{bundle.bundleType}}</td>
+        <td>{{bundle.notes}}</td>
+        <td>{{bundle.providerName}}</td>
+        <td>
+          <div class="d-flex align-items-center">{{bundle.price}}</div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">{{bundle.isActive}}</div>
+        </td>
+        <td>{{bundle.buyingPrice}}</td>
+
+
+
+
+        <td>
+
+
+          <button class="btn btn-warning mx-1" routerLink="/bundle/{{bundle.id}}"
+            routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+              class="material-symbols-outlined">
+              Edit
+            </span></button>
+
+          <button class="btn btn-danger" (click)="openDialog(bundle.id)"><span
+            class="material-symbols-outlined">
+            Delete
+          </span> </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

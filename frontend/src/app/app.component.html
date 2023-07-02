@@ -1,0 +1,21 @@
+
+
+      <button mat-icon-button (click)="sideNav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+     
+ 
+  <mat-sidenav-container class="bg-light">
+    
+    <mat-sidenav #sideNav mode="side" fixed> 
+      <mat-nav-list>
+      <app-navbar></app-navbar>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content class="">
+      <!-- Your main content here -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

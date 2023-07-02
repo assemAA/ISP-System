@@ -1,0 +1,181 @@
+
+<div class="d-flex align-items-center justify-content-center my-5">
+  <div class="text-center container">
+    <div class="form-head d-flex mb-3 align-items-start">
+
+
+    </div>
+    <form class="text-start repeater row basic-form card-body row" [formGroup]="branchform" (ngSubmit)="Add($event)">
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control input-default" placeholder="Enter Branch Name" formControlName="Name">
+        <ng-container *ngIf="submitted &&branchform.controls.Name.errors">
+          <div *ngIf="getName.hasError('required')" class="form-text text-danger">Branch name is
+            required </div>
+        </ng-container>
+
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label">Governorate Name</label>
+        <select  class="form-select" formControlName="GovernarateName">
+          <option *ngFor="let gov of governorates" [value]="gov.id">{{gov.name}}</option>
+        </select>
+        <ng-container *ngIf="submitted &&branchform.controls.GovernarateName.errors">
+          <div *ngIf="getGovernarateId.hasError('required')" class="form-text text-danger">Governorate Name is
+            required</div>
+        </ng-container>
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label"> phone Number One </label>
+        <input type="text" class="form-control input-default" placeholder="Enter phone Number"
+          formControlName="PhoneNumberOne">
+        <ng-container *ngIf="submitted &&branchform.controls.PhoneNumberOne.errors">
+          <div *ngIf="getPhoneNumberOne.hasError('required')" class="form-text text-danger">phone Number One is
+            required </div>
+        </ng-container>
+
+        <ng-container *ngIf="submitted &&branchform.controls.PhoneNumberOne.errors">
+          <div *ngIf="getPhoneNumberOne.hasError('pattern')" class="form-text text-danger">phone Number is
+            Numbers only </div>
+        </ng-container>
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label"> phone Number Two</label>
+        <input type="text" class="form-control input-default" placeholder="Enter phone Number"
+          formControlName="PhoneNumberTwo">
+        <ng-container *ngIf="submitted &&branchform.controls.PhoneNumberTwo.errors">
+          <div *ngIf="getPhoneNumberTwo.hasError('required')" class="form-text text-danger">phone Number Two is
+            required </div>
+        </ng-container>
+
+        <ng-container *ngIf="submitted &&branchform.controls.PhoneNumberTwo.errors">
+          <div *ngIf="getPhoneNumberTwo.hasError('pattern')" class="form-text text-danger">phone Number is
+            Numbers Only </div>
+        </ng-container>
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label"> mobile Number One</label>
+        <input type="text" class="form-control input-default" placeholder="Enter mobile Number"
+          formControlName="MobileNumberOne">
+        <ng-container *ngIf="submitted &&branchform.controls.MobileNumberOne.errors">
+          <div *ngIf="getMobileNumberOne.hasError('required')" class="form-text text-danger">mobile Number One is
+            required </div>
+        </ng-container>
+
+        <ng-container *ngIf="submitted &&branchform.controls.MobileNumberOne.errors">
+          <div *ngIf="getMobileNumberOne.hasError('pattern')" class="form-text text-danger">Mobile Number is
+            Numbers only </div>
+        </ng-container>
+      </div>
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label"> mobile Number Two</label>
+        <input type="text" class="form-control input-default" placeholder="Entermobile Number"
+          formControlName="MobileNumberTwo">
+        <ng-container *ngIf="submitted &&branchform.controls.MobileNumberTwo.errors">
+          <div *ngIf="getMobileNumberTwo.hasError('required')" class="form-text text-danger">mobile Number Two is
+            required
+           </div>
+
+          <ng-container *ngIf="submitted &&branchform.controls.MobileNumberTwo.errors">
+            <div *ngIf="getMobileNumberTwo.hasError('pattern')" class="form-text text-danger">Mobile Number is
+              Numbers only </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label"> Fax</label>
+        <input type="text" class="form-control input-default" placeholder="Enter Fax" formControlName="Fax">
+        <ng-container *ngIf="submitted &&branchform.controls.Fax.errors">
+          <div *ngIf="getFax.hasError('required')" class="form-text text-danger">Fax is
+            required </div>
+        </ng-container>
+
+        <ng-container *ngIf="submitted &&branchform.controls.Fax.errors">
+          <div *ngIf="getFax.hasError('pattern')" class="form-text text-danger">Fax Number One is
+            Number Only </div>
+        </ng-container>
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label">Manger Name</label>
+        <select class="form-select" formControlName="ManagerName">
+          <option *ngFor="let manager of managers"  [value]="manager.id">{{manager.userName}}</option>
+        </select>
+        <ng-container *ngIf="submitted &&branchform.controls.ManagerName.errors">
+          <div *ngIf="getManagerId.hasError('required')" class="form-text text-danger">Manger Name is
+            required</div>
+        </ng-container>
+      </div>
+
+       <div class="row justify-content-center">
+        <button type="submit" class="btn btn-primary col-md-2  ">{{branchId?"Edit":"Add"}}</button>
+       </div>
+      
+    </form>
+  </div>
+
+  
+  
+</div>
+
+
+<div class="  container table-responsive">
+
+  <table class="table table-responsive-md">
+    <thead>
+      <tr>
+
+        <th scope="col"><strong>Branch Name</strong></th>
+        <th scope="col"><strong>Branch Address</strong></th>
+        <th scope="col"><strong>Tele 1</strong></th>
+        <th scope="col"><strong>Tele 2</strong></th>
+        <th scope="col"><strong>phone 1</strong></th>
+        <th scope="col"><strong>phone 2</strong></th>
+        <th scope="col"><strong>Fax</strong></th>
+        <th scope="col"><strong>Manager Name</strong></th>
+        <th></th>
+
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of branches">
+
+        <td>{{branch.name}}</td>
+        <td>{{branch.governate}}</td>
+        <td>{{branch.phoneNumberOne}}</td>
+        <td>{{branch.phoneNumberTwo}}</td>
+        <td>{{branch.mobileNumberOne}}</td>
+        <td>{{branch.mobileNumberTwo}}</td>
+        <td>
+          <div class="d-flex align-items-center">{{branch.fax}}</div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">{{branch.manager}}</div>
+        </td>
+        <td>
+
+
+          <button class="btn btn-warning mx-1" routerLink="/branch/{{branch.id}}"
+            routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+              class="material-symbols-outlined">
+              Edit
+            </span></button>
+
+          <button class="btn btn-danger" (click)="openDialog(branch.id)"><span class="material-symbols-outlined">
+              Delete
+            </span> </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,285 @@
+<div class="d-flex align-items-center justify-content-center my-5">
+  <div class="text-center container">
+   
+     
+    <form class="text-start repeater row basic-form card-body row  " [formGroup]="offerform"
+      (ngSubmit)="Add($event)">
+
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly"> Name</label>
+        <input type="text" class="form-control" placeholder="Enter Offer Name" formControlName="name">
+        <ng-container *ngIf="submitted &&offerform.controls.name.errors">
+          <div *ngIf="getName.hasError('required')" class="form-text text-danger">Offer Name is
+            Required </div>
+
+        </ng-container>
+
+      </div>
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">fine In First Year</label>
+          <input type="text" class="form-control" placeholder="Enter fine In First Year"
+            formControlName="fineInFirstYear">
+          <ng-container *ngIf="submitted &&offerform.controls.fineInFirstYear.errors">
+            <div *ngIf="FineInFirstYear.hasError('required')" class="form-text text-danger">Fine In First Year is
+              Required </div>
+
+          </ng-container>
+          <ng-container *ngIf="submitted&& offerform.controls.fineInFirstYear.errors">
+            <div *ngIf="FineInFirstYear.hasError('pattern')" class="form-text text-danger">fine In First Year is
+              Numbers only</div>
+
+          </ng-container>
+        </div>
+      
+
+
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly">periodForCancelOffer</label>
+        <input type="text" class="form-control" placeholder="Enter period For Cancel"
+          formControlName="periodForCancelOffer">
+        <ng-container *ngIf="submitted &&offerform.controls.periodForCancelOffer.errors">
+          <div *ngIf="PeriodForCancelOffer.hasError('required')" class="form-text text-danger">period For Cancel Offer
+            is
+            Required </div>
+
+        </ng-container>
+        <ng-container *ngIf="submitted&& offerform.controls.periodForCancelOffer.errors">
+          <div *ngIf="PeriodForCancelOffer.hasError('pattern')" class="form-text text-danger">period For Cancel Offer is
+            Numbers only</div>
+
+        </ng-container>
+      </div>
+
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">AmountOfOfferMonths</label>
+          <input type="text" class="form-control" placeholder="Enter Offer Months"
+            formControlName="amountOfOfferMonths">
+          <ng-container *ngIf="submitted &&offerform.controls.amountOfOfferMonths.errors">
+            <div *ngIf="AmountOfOfferMonths.hasError('required')" class="form-text text-danger">Amount Of Offer Months
+              is
+              Required </div>
+
+          </ng-container>
+          <ng-container *ngIf="submitted&& offerform.controls.amountOfOfferMonths.errors">
+            <div *ngIf="AmountOfOfferMonths.hasError('pattern')" class="form-text text-danger">Amount Of Offer Months is
+              Numbers only</div>
+
+          </ng-container>
+        </div>
+    
+
+
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly">Is There Discount</label>
+        <select class="form-select" formControlName="isThereDiscount">
+          <option [ngValue]="true">True</option>
+          <option [ngValue]="false">False</option>
+        </select>
+        <ng-container *ngIf="submitted &&offerform.controls.isThereDiscount.errors">
+          <div *ngIf="IsThereDiscount.hasError('required')" class="form-text text-danger">Is There Discount is
+            required</div>
+
+        </ng-container>
+      </div>
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">Amount Of Discount</label>
+          <input type="text" [readonly]="!IsThereDiscount.value" class="form-control"
+            placeholder="Enter amount Of Discount" formControlName="amountOfDiscount">
+          <ng-container *ngIf="submitted &&offerform.controls.amountOfDiscount.errors">
+            <div *ngIf="AmountOfDiscount.hasError('required')" class="form-text text-danger">Amount Of Discount is
+              Required </div>
+
+          </ng-container>
+          <ng-container *ngIf="submitted&& offerform.controls.amountOfDiscount.errors">
+            <div *ngIf="AmountOfDiscount.hasError('pattern')" class="form-text text-danger">Amount Of Discount is
+              Numbers only</div>
+
+          </ng-container>
+        </div>
+     
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">IsIncludeRouter</label>
+          <select class="form-select" formControlName="isIncludeRouter">
+            <option [ngValue]="true">True</option>
+            <option [ngValue]="false">False</option>
+          </select>
+          <ng-container *ngIf="submitted &&offerform.controls.isIncludeRouter.errors">
+            <div *ngIf="IsIncludeRouter.hasError('required')" class="form-text text-danger">Is In clude Router is
+              required</div>
+
+          </ng-container>
+       
+
+      </div>
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly">Router Cost</label>
+        <input type="text" [readonly]="!IsIncludeRouter.value" class="form-control" placeholder="Enter router Cost"
+          formControlName="routerCost">
+        <ng-container *ngIf="submitted &&offerform.controls.routerCost.errors">
+          <div *ngIf="RouterCost.hasError('required')" class="form-text text-danger">Router Cost is
+            Required </div>
+
+        </ng-container>
+        <ng-container *ngIf="submitted&& offerform.controls.routerCost.errors">
+          <div *ngIf="RouterCost.hasError('pattern')" class="form-text text-danger">Router Cost is
+            Numbers only</div>
+
+        </ng-container>
+      </div>
+    
+
+
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly">FreeMonthsFirst</label>
+        <select class="form-select" formControlName="freeMonthsFirst">
+          <option [ngValue]="true">True</option>
+          <option [ngValue]="false">False</option>
+        </select>
+        <ng-container *ngIf="submitted &&offerform.controls.freeMonthsFirst.errors">
+          <div *ngIf="FreeMonthsFirst.hasError('required')" class="form-text text-danger">Free Months First is
+            required</div>
+
+        </ng-container>
+      </div>
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">CombinedBill</label>
+          <select class="form-select" formControlName="combinedBill">
+            <option [ngValue]="true">True</option>
+            <option [ngValue]="false">False</option>
+          </select>
+          <ng-container *ngIf="offerform.controls.combinedBill.errors">
+            <div *ngIf="CombinedBill.hasError('required')" class="form-text text-danger">Combined Bill is
+              required</div>
+
+          </ng-container>
+        </div>
+   
+
+
+
+
+      <div class="form-group col-md-6 my-3">
+        <label class="form-label" id="labelonly">Amount Of Free Months</label>
+        <input type="text" class="form-control" placeholder="Enter Free Months" formControlName="amountOfFreeMonths">
+        <ng-container *ngIf="submitted &&offerform.controls.amountOfFreeMonths.errors">
+          <div *ngIf="AmountOfFreeMonths.hasError('required')" class="form-text text-danger">AmountOfFreeMonths is
+            Required </div>
+
+        </ng-container>
+        <ng-container *ngIf="submitted&& offerform.controls.amountOfFreeMonths.errors">
+          <div *ngIf="AmountOfFreeMonths.hasError('pattern')" class="form-text text-danger">Amount Of FreeMonths is
+            Numbers only</div>
+
+        </ng-container>
+      </div>
+
+        <div class="form-group col-md-6 my-3">
+          <label class="form-label" id="labelonly">Ability To Low Or Raise</label>
+          <select class="form-select" formControlName="abilityToLowOrRaise">
+            <option [ngValue]="true">True</option>
+            <option [ngValue]="false">False</option>
+          </select>
+          <ng-container *ngIf="submitted &&offerform.controls.abilityToLowOrRaise.errors">
+            <div *ngIf="AbilityToLowOrRaise.hasError('required')" class="form-text text-danger">Ability To Low Or Raise
+              is
+              required</div>
+
+          </ng-container>
+    
+
+
+      </div>
+
+
+      <div class="form-group col-md-12 my-3">
+        <label class="form-label" id="labelonly"> branch Name</label>
+        <select multiple class="form-select" formControlName="branchesId">
+          <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}}</option>
+        </select>
+        <ng-container *ngIf="submitted &&offerform.controls.branchesId.errors">
+          <div *ngIf="BranchId.hasError('required')" class="form-text text-danger">BranchId is
+            required</div>
+
+        </ng-container>
+      </div>
+
+
+
+
+
+
+
+
+<div  class="row justify-content-center">
+      <button type="submit" class="btn btn-primary col-md-2">{{offerId?"Edit ":"Add"}}</button>
+      </div>
+    </form>
+   
+  </div>
+</div>
+
+<div class="container   table-responsive">
+
+  <table class=" table table-responsive-md justify-content-center">
+    <thead>
+      <tr>
+
+        <th scope="col">Name</th>
+        <th scope="col">fineInFirstYear</th>
+        <th scope="col">periodForCancelOffer</th>
+
+        <th scope="col">amountOfOfferMonths</th>
+        <th scope="col">amountOfFreeMonths</th>
+        <th scope="col">freeMonthsFirst</th>
+        <th scope="col">combinedBill</th>
+
+        <th scope="col">amountOfDiscount</th>
+
+        <th scope="col">routerCost</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let offer of offers">
+
+        <td scope="row">{{offer.name}}</td>
+        <td>{{offer.fineInFirstYear}}</td>
+        <td>{{offer.periodForCancelOffer}}</td>
+
+        <td>{{offer.amountOfOfferMonths}}</td>
+        <td>{{offer.amountOfFreeMonths}}</td>
+        <td>{{offer.freeMonthsFirst}}</td>
+        <td>{{offer.combinedBill}}</td>
+
+        <td>{{offer.amountOfDiscount}}</td>
+
+        <td>{{offer.routerCost}}</td>
+
+   
+        <td>
+          <button class="btn btn-warning mx-1" routerLink="/offer/{{offer.id}}"
+            routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+              class="material-symbols-outlined">
+              Edit
+            </span></button>
+          <button class="btn btn-danger" (click)="openDialog(offer.id)">Delete </button>
+        </td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

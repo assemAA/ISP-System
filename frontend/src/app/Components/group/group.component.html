@@ -1,0 +1,90 @@
+<div class="d-flex align-items-center justify-content-center my-5">
+    <div class="text-center container ">
+        <div class="form-head d-flex mb-3 align-items-start">
+ 
+
+            <form class="text-start repeater row basic-form card-body row " [formGroup]="groupform" (submit)="Add()">
+                <div class="form-group col-md-6 my-3">
+                    <label class="form-label"> GROUP Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Group Name" formControlName="Name">
+                    <ng-container *ngIf="submitted && groupform.controls.Name.errors">
+                        <div *ngIf="getName.hasError('required')" class="form-text text-danger">Group name is
+                            required </div>
+                    </ng-container>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"> PRIVILEGE</label>
+
+                    <ng-container *ngFor="let role of roles">
+                        <div class="form-check">
+                            <input type="radio" name="Privilege" [id]="role.value" [value]="role.value"
+                                formControlName="Privilege">
+                            <label [for]="role.value">
+                                {{role.label}}
+                            </label>
+                        </div>
+                    </ng-container>
+                </div>
+                <div>
+                    <ng-container *ngIf="submitted && groupform.controls.Privilege.errors">
+                        <div *ngIf="groupform.controls.Privilege.errors['required']" class="form-text text-danger">Group
+                            Privlege is
+                            required</div>
+                    </ng-container>
+
+
+                </div>
+                <div class="row justify-content-center">
+                <button type="submit" class="btn btn-primary col-md-2">{{groupId?"Edit":"Add"}}</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+    </div>
+    <div class="  container  table-responsive">
+
+        <table class="table table-responsive-md">
+            <thead>
+                <tr>
+                    
+                    <th scope="col"><strong>Name</strong></th>
+                    <th scope="col"><strong>Have All Privileges</strong> </th>
+                    <th scope="col"><strong>Add And Read Clients , Users Data</strong></th>
+                    <th scope="col"><strong>Add And Read Clients Data</strong></th>
+                    <th scope="col"><strong>Read Clients Data Only</strong></th>
+
+                         <th  scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let group of groups">
+                    <td>{{group.name}}</td>
+                    <td>{{group.isAdmin}}</td>
+                    <td>{{group.isManager}}</td>
+                    <td>{{group.isEmployee}}</td>
+                    <td>{{group.readClients}}</td>
+                    <td>
+                        <button class="btn btn-warning mx-1" routerLink="/group/{{group.id}}"
+                            routerLinkActive="bg-light rounded text-dark" [routerLinkActiveOptions]="{exact:true}"><span
+                                class="material-symbols-outlined">
+                                Edit
+                            </span></button>
+
+                        <button class="btn btn-danger" (click)="openDialog(group.id)"><span
+                            class="material-symbols-outlined">
+                            Delete
+                        </span> </button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
